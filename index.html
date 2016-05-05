@@ -1,0 +1,111 @@
+﻿<!DOCTYPE html> 
+<html>
+<head>
+  <title>AMAWS App</title>
+  <link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
+
+  <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+  
+  <!-- Custom Theme files -->
+<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+<!-- Custom Theme files -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8">
+
+<!--webfont-->
+<link href='http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:400,200,300,700' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900,200italic,300italic,400italic,600italic,700italic,900italic' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Karla:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
+
+</head>
+
+
+<body> 
+
+
+<!-- header-section-starts -->
+	<div class="user-desc">
+		<div class="container">
+			<ul>
+				<li><a href="#">AMAWS</a></li>
+			</ul>
+		</div>
+		</div>
+		<div class="header">
+		<div class="header-top">
+			<div class="container">
+				<div class="top-menu">
+				<span class="menu"> </span>
+					<ul class="cl-effect-15">
+						<li><a href="index.html" data-hover="Login">Login</a></li>
+						<li><a href="registro.html" data-ajax="false" data-hover="Registrarse">Registrarse</a></li>
+						<li><a href="#" data-hover="CodigoQR">CodigoQR</a></li>												
+					</ul>
+				</div>
+				<!--script-nav-->
+				
+			</div>
+		</div>
+		</div>
+<!-- header-section-ends -->
+    
+<div class="container">
+	  <div class="main">
+	 	 <div class="container">
+				  <div class="login-form">
+			 	  	 	<h2>Login</h2>
+		
+<form id="formulario">
+ 	  					    <div>
+						    	<span><label>Email</label></span>
+							   	<span><input name="usuario" id="nombredeusuario" type="text" class="textbox" required></span>
+						    </div>
+						    <div>
+						     	<span><label>Contraseña</label></span>
+						    	<span><input name="password" id="clave" type="password" class="textbox" required></span>
+						    </div>
+						   <div>			
+						        <input type="submit" class="btn btn-success" value="Ingresar" id="Login">								
+						    </div>
+</form>		
+	
+</div>
+
+</div>
+	 
+</div>
+ 
+
+ 
+
+<script>
+
+$('#formulario').submit(function() { 
+		 
+// recolecta los valores que inserto el usuario
+	
+var datosUsuario = $("#nombredeusuario").val()	
+var datosPassword = $("#clave").val()	
+  	
+archivoValidacion = "validacion_de_datos.php?jsoncallback=?"
+	
+$.getJSON( archivoValidacion, { usuario:datosUsuario ,password:datosPassword})
+	.done(function(respuestaServer) {		
+		alert(respuestaServer.mensaje + "\nGenerado en: " + respuestaServer.hora + "\n" +respuestaServer.generador)		
+		if(respuestaServer.validacion == "ok"){		  
+		 	/// si la validacion es correcta, muestra la pantalla "home"
+			window.open("entrar.html", "_self"); 
+
+		}else{		  
+		  /// ejecutar una conducta cuando la validacion falla
+		}
+  
+	})
+	return false;
+})
+	
+</script>
+
+
+</body>
+</html>
